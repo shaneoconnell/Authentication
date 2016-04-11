@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils import timezone
@@ -23,4 +22,5 @@ class AccountUserManager(UserManager):
 
 
 class User(AbstractUser):
+    stripe_id = models.CharField(max_length=40, default='')
     objects = AccountUserManager()

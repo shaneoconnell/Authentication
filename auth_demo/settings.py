@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'stripe',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -126,5 +127,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
 AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = ('accounts.backends.EmailAuth',)
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_iDqnbXibHUiu3UsIfqn0sSxI')
+
+STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_Ai4N8Vdvx5zy38AQ865TnGjM')

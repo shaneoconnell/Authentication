@@ -2,7 +2,6 @@ from models import User
 
 
 class EmailAuth(object):
-
     def authenticate(self, email=None, password=None):
 
         try:
