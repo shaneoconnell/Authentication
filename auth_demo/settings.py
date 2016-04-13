@@ -26,6 +26,7 @@ SECRET_KEY = 'm3$q60ste4ox@i)ck(x3=diynnbp+$78q$j%8m^!5wvo&72jsz'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SITE_ID = 1
 
 
 # Application definition
@@ -43,7 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'stripe',
-]
+    'paypal_store',
+    'products',
+    'paypal.standard.ipn',
+    ]
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,8 +136,15 @@ STATICFILES_DIRS = (
 )
 
 AUTH_USER_MODEL = 'accounts.User'
-AUTHENTICATION_BACKENDS = ('accounts.backends.EmailAuth',)
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend','accounts.backends.EmailAuth',)
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_iDqnbXibHUiu3UsIfqn0sSxI')
 
 STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_Ai4N8Vdvx5zy38AQ865TnGjM')
+
+SITE_URL = 'http://127.0.0.1:8000'
+
+PAYPAL_NOTIFY_URL = 'http://127.0.0.1/a-very-hard to guess-url/'
+
+PAYPAL_RECEIVER_EMAIL = 'arleehouse@eircom.net'
